@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float          MovementSpeed;
-    public float          JumpHeight;
-    public float          JetPackPower;
-    public float          GroundCheckSize = 0.1f;
-    public float          MaxSpeed;
-    public GameObject     PurpleCannon;
-    public GameObject     WaterCannon;
-    public GameObject     SuckCannon;
-    public ParticleSystem PurpleParticle;
-    public ParticleSystem WaterParticle;
-    public ParticleSystem SuckParticle;
-    public LayerMask      Walkable;
-    Animator anim;
+    public float           MovementSpeed;
+    public float           JumpHeight;
+    public float           JetPackPower;
+    public float           GroundCheckSize = 0.1f;
+    public float           MaxSpeed;
+    public GameObject      PurpleCannon;
+    public GameObject      WaterCannon;
+    public GameObject      SuckCannon;
+    public ParticleSystem  PurpleParticle;
+    public ParticleSystem  WaterParticle;
+    public ParticleSystem  SuckParticle;
+    public LayerMask       Walkable;
+           Animator        anim;
+    [SerializeField] float damage;
 
-    public           float MaxHp;
+    public           float maxHp;
     public           float HpRegen;
     [SerializeField] float Hp;
 
@@ -33,9 +34,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float maxFuel;
     [SerializeField] float currentFuel;
-    [SerializeField] float depletionRate;
+    [SerializeField] float fuelRegen;
+    [SerializeField] float fuelDepletionRate;
+
+    [SerializeField] float maxWater;
+    [SerializeField] float water;
+    [SerializeField] float waterDepletionRate;
 
     public HealthBar healthBar;
+    public HealthBar fuelBar;
+    public HealthBar waterBar;
 
     void Start()
     {
@@ -43,10 +51,13 @@ public class PlayerController : MonoBehaviour
         _collider   = GetComponent<Collider2D>();
         MultiTool   = transform.GetChild(0).gameObject;
         cam         = Camera.main;
-        currentFuel = maxFuel;
         anim        = GetComponent<Animator>();
-        Hp          = MaxHp;
-        healthBar.SetMaxHealth(MaxHp);
+        Hp          = maxHp;
+        currentFuel = maxFuel;
+        water       = maxWater;
+        healthBar.SetMaxHealth(maxHp);
+        fuelBar.SetMaxHealth(maxFuel);
+        waterBar.SetMaxHealth(maxWater);
     }
 
     void Update()
@@ -105,7 +116,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 
-                rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude-Time.deltaTime);
+                rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude - Time.deltaTime);
                 
             }
         }
@@ -141,15 +152,16 @@ public class PlayerController : MonoBehaviour
         WaterCannon.SetActive(false); SuckCannon.SetActive(false); PurpleCannon.SetActive(false);
         switch (SelectedWeapon)
         {
-            case 0: PurpleCannon.SetActive(true);   break;
+            case 0: PurpleCannon.SetActive(true); break;
             case 1: WaterCannon.SetActive(true);  break;
-            case 2: SuckCannon.SetActive(true);  break;
+            case 2: SuckCannon.SetActive(true);   break;
         }
     }
 
     void Fuel()
     {
-        currentFuel -= depletionRate * Time.deltaTime;
+        currentFuel -= fuelDepletionRate * Time.deltaTime;
+        fuelBar.SetHealth(currentFuel);
     }
 
     private bool IsGrounded()
@@ -200,10 +212,14 @@ public class PlayerController : MonoBehaviour
 
     void WaterGun()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && water > 0)
         {
             if (!WaterParticle.isEmitting)
+            {
                 WaterParticle.Play();
+            }
+            water -= waterDepletionRate * Time.deltaTime;
+            waterBar.SetHealth(water);
         }
         else
         {
@@ -232,17 +248,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Hp < 0) { Death(); }
 
-        if (Hp < MaxHp) 
+        if (Hp < maxHp) 
         {
             Hp += HpRegen * Time.deltaTime;
             healthBar.SetHealth(Hp);
         }
-    }
 
-    public void GetDamage()
-    {
-        Hp--;
-        healthBar.SetHealth(Hp);
+        if (currentFuel < maxFuel && IsGrounded())
+        {
+            currentFuel += fuelRegen * Time.deltaTime;
+            fuelBar.SetHealth(currentFuel);
+        }
     }
 
     public void Death()
@@ -258,7 +274,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            GetDamage();
+            Hp -= damage * Time.deltaTime;
+            healthBar.SetHealth(Hp);
         }
+    }
+
+    public void RefilWater()
+    {
+        water = maxWater;
+        waterBar.SetHealth(water);
     }
 }
