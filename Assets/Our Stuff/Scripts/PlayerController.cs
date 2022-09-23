@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float MovementSpeed;
     public float JumpHeight;
+    public float JetPackPower;
+    public float GroundCheckSize = 0.1f;
     public LayerMask Walkable;
 
     GameObject MultiTool;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         Walking();
         Jumping();
         Aim();
+        JetPackGun();
     }
 
     private void FixedUpdate()
@@ -74,8 +77,8 @@ public class PlayerController : MonoBehaviour
     {
         //RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f,
         //Vector2.down, 1, layerMask);
-        RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center - new Vector3(0, _collider.bounds.extents.y + 0.01f),
-            new Vector3(_collider.bounds.size.x - 0.2f, 0.005f), 0f, Vector2.down, 0, Walkable);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center - new Vector3(0, _collider.bounds.extents.y + GroundCheckSize),
+            new Vector3(_collider.bounds.size.x - 0.2f, GroundCheckSize/2), 0f, Vector2.down, 0, Walkable);
         Color raycolor;
 
         bool ImGrounded = raycastHit.collider != null;
@@ -96,5 +99,13 @@ public class PlayerController : MonoBehaviour
 
         //Anim.SetBool("IsGrounded", daddypls);
         return ImGrounded;
+    }
+
+    void JetPackGun()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            rb.velocity = -MultiTool.transform.right * JetPackPower * Time.deltaTime;
+        }
     }
 }
