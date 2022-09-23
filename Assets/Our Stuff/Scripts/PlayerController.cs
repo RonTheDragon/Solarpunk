@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float MovementSpeed;
-    public float JumpHeight;
-    public float JetPackPower;
-    public float GroundCheckSize = 0.1f;
+    public float     MovementSpeed;
+    public float     JumpHeight;
+    public float     JetPackPower;
+    public float     GroundCheckSize = 0.1f;
     public LayerMask Walkable;
 
     GameObject MultiTool;
 
-    float MovementX = 0;
-    Rigidbody2D rb;
+    float         MovementX = 0;
+    Rigidbody2D   rb;
     BoxCollider2D _collider;
-    Camera cam;
+    Camera        cam;
    
     void Start()
     {
