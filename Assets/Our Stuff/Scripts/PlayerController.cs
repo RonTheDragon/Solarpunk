@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float     JumpHeight;
     public float     JetPackPower;
     public float     GroundCheckSize = 0.1f;
+    public float     MaxSpeed;
     public ParticleSystem PurpleParticle;
     public ParticleSystem WaterParticle;
     public LayerMask Walkable;
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour
         {
             MovementX = 0;
         }
+
+        if (rb.velocity.magnitude > MaxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * MaxSpeed;
+        }
     }
 
     void Jumping()
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.velocity = new Vector2(0, JumpHeight);
+                rb.velocity += new Vector2(0, JumpHeight);
             }
         }
     }
@@ -128,7 +134,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            rb.velocity = -MultiTool.transform.right * JetPackPower * Time.deltaTime;
+           // rb.velocity = MultiTool.transform.right * JetPackPower * Time.deltaTime;
+            rb.AddForce(-MultiTool.transform.right * JetPackPower * Time.deltaTime);
             if (!PurpleParticle.isEmitting)
             PurpleParticle.Play();
         }
