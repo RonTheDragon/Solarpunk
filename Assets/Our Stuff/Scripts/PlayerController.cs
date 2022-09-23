@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem WaterParticle;
     public ParticleSystem SuckParticle;
     public LayerMask      Walkable;
+    public Animator anim;
 
     public           float MaxHp;
     public           float HpRegen;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
         MultiTool   = transform.GetChild(0).gameObject;
         cam         = Camera.main;
         currentFuel = maxFuel;
-
+        anim = GetComponent<Animator>();
         Hp = MaxHp;
     }
 
@@ -71,14 +72,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             MovementX = 1;
+            anim.SetInteger("Direction",-1);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             MovementX = -1;
+            anim.SetInteger("Direction", 1);
         }
         else
         {
             MovementX = 0;
+            anim.SetInteger("Direction", 0);
         }
 
         if (rb.velocity.magnitude > MaxSpeed)
