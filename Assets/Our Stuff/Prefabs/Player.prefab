@@ -14849,6 +14849,7 @@ GameObject:
   - component: {fileID: 1715601538252432221}
   - component: {fileID: 1715601538252432218}
   - component: {fileID: 1715601538252432223}
+  - component: {fileID: 1956016169}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -14947,6 +14948,7 @@ MonoBehaviour:
   Walkable:
     serializedVersion: 2
     m_Bits: 1
+  anim: {fileID: 0}
   MaxHp: 80
   HpRegen: 1
   Hp: 0
@@ -14954,6 +14956,25 @@ MonoBehaviour:
   maxFuel: 100
   currentFuel: 0
   depletionRate: 10
+--- !u!95 &1956016169
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715601538252432219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 848b1be7d690540468c62f44daca56ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1715601538463605172
 GameObject:
   m_ObjectHideFlags: 0
