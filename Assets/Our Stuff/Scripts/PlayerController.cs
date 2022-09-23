@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float     JetPackPower;
     public float     GroundCheckSize = 0.1f;
     public float     MaxSpeed;
+    public GameObject PurpleCannon;
+    public GameObject WaterCannon;
+    public GameObject SuckCannon;
     public ParticleSystem PurpleParticle;
     public ParticleSystem WaterParticle;
     public ParticleSystem SuckParticle;
@@ -19,13 +22,13 @@ public class PlayerController : MonoBehaviour
     int SelectedWeapon;
     float         MovementX = 0;
     Rigidbody2D   rb;
-    BoxCollider2D _collider;
+    Collider2D _collider;
     Camera        cam;
    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<Collider2D>();
         MultiTool = transform.GetChild(0).gameObject;
         cam = Camera.main;
     }
@@ -107,6 +110,12 @@ public class PlayerController : MonoBehaviour
         {
             SelectedWeapon--;
             if (SelectedWeapon < 0) SelectedWeapon = 2;
+        }
+        switch (SelectedWeapon)
+        {
+            case 0: PurpleCannon.SetActive(true); WaterCannon.SetActive(false); SuckCannon.SetActive(false); break;
+            case 1: WaterCannon.SetActive(true); PurpleCannon.SetActive(false); SuckCannon.SetActive(false); break;
+            case 2: SuckCannon.SetActive(true); PurpleCannon.SetActive(false); WaterCannon.SetActive(false); break;
         }
     }
 
