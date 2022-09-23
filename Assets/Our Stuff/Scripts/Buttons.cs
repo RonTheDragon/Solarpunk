@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    [SerializeField] GameObject mainMenu;
+
     public void Quit()
     {
         Application.Quit();
@@ -17,6 +19,7 @@ public class Buttons : MonoBehaviour
 
     public void GameStart()
     {
-
+        Time.timeScale = 1;
+        mainMenu.SetActive(false);
     }
 }
