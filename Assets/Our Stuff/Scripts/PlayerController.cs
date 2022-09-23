@@ -8,10 +8,13 @@ public class PlayerController : MonoBehaviour
     public float     JumpHeight;
     public float     JetPackPower;
     public float     GroundCheckSize = 0.1f;
+    public ParticleSystem PurpleParticle;
+    public ParticleSystem WaterParticle;
     public LayerMask Walkable;
 
     GameObject MultiTool;
 
+    int SelectedWeapon;
     float         MovementX = 0;
     Rigidbody2D   rb;
     BoxCollider2D _collider;
@@ -30,7 +33,12 @@ public class PlayerController : MonoBehaviour
         Walking();
         Jumping();
         Aim();
-        JetPackGun();
+
+        switch (SelectedWeapon)
+        {
+            case 0: JetPackGun(); break;
+            case 1: WaterGun(); break;
+        }
     }
 
     private void FixedUpdate()
@@ -73,6 +81,11 @@ public class PlayerController : MonoBehaviour
         MultiTool.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
+    void SoundSwitching()
+    {
+       // if ()
+    }
+
     private bool IsGrounded()
     {
         //RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f,
@@ -106,6 +119,25 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             rb.velocity = -MultiTool.transform.right * JetPackPower * Time.deltaTime;
+            if (!PurpleParticle.isEmitting)
+            PurpleParticle.Play();
+        }
+        else
+        {
+            PurpleParticle.Stop();
+        }
+    }
+
+    void WaterGun()
+    {
+        if (Input.GetMouseButton(0))
+        {
+        if (!WaterParticle.isEmitting)
+                WaterParticle.Play();
+        }
+        else
+        {
+            WaterParticle.Stop();
         }
     }
 }
