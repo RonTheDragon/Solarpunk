@@ -17,17 +17,18 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem SuckParticle;
     public LayerMask      Walkable;
 
-    public float MaxHp;
-    public float HpRegen;
-    float Hp;
+    public           float MaxHp;
+    public           float HpRegen;
+    [SerializeField] float Hp;
 
     GameObject MultiTool;
 
-    int           SelectedWeapon;
-    float         MovementX = 0;
-    Rigidbody2D   rb;
-    Collider2D    _collider;
-    Camera        cam;
+                     int         SelectedWeapon;
+                     float       MovementX = 0;
+                     Rigidbody2D rb;
+                     Collider2D  _collider;
+                     Camera      cam;
+    [SerializeField] GameObject  loseMenu;
 
     [SerializeField] float maxFuel;
     [SerializeField] float currentFuel;
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
         //RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f,
         //Vector2.down, 1, layerMask);
         RaycastHit2D raycastHit = Physics2D.BoxCast(_collider.bounds.center - new Vector3(0, _collider.bounds.extents.y + GroundCheckSize),
-            new Vector3(_collider.bounds.size.x - 0.2f, GroundCheckSize/2), 0f, Vector2.down, 0, Walkable);
+        new Vector3(_collider.bounds.size.x - 0.2f, GroundCheckSize/2), 0f, Vector2.down, 0, Walkable);
         Color raycolor;
 
         bool ImGrounded = raycastHit.collider != null;
@@ -155,10 +156,10 @@ public class PlayerController : MonoBehaviour
             raycolor = Color.red;
         }
 
-        Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x, _collider.bounds.extents.y), Vector2.down * (_collider.bounds.extents.y * 2), raycolor);
-        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x, -_collider.bounds.extents.y), Vector2.down * (_collider.bounds.extents.y * 2), raycolor);
-        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x, _collider.bounds.extents.y), Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
-        Debug.DrawRay(_collider.bounds.center + new Vector3(-_collider.bounds.extents.x, _collider.bounds.extents.y), Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x,  _collider.bounds.extents.y),  Vector2.down *  (_collider.bounds.extents.y * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x,  -_collider.bounds.extents.y), Vector2.down *  (_collider.bounds.extents.y * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x,  _collider.bounds.extents.y),  Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center + new Vector3(-_collider.bounds.extents.x, _collider.bounds.extents.y),  Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
 
         //Anim.SetBool("IsGrounded", daddypls);
         return ImGrounded;
@@ -186,14 +187,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-        if (!WaterParticle.isEmitting)
+            if (!WaterParticle.isEmitting)
                 WaterParticle.Play();
         }
         else
         {
             WaterParticle.Stop();
         }
-            PurpleParticle.Stop();
+        PurpleParticle.Stop();
         SuckParticle.Stop();
     }
 
@@ -210,13 +211,10 @@ public class PlayerController : MonoBehaviour
         }
         PurpleParticle.Stop();
         WaterParticle.Stop();
-
     }
 
     void HealthSystem()
     {
-
-
         if (Hp < 0) { Death(); }
 
         if (Hp < MaxHp) { Hp += HpRegen * Time.deltaTime; }
@@ -229,7 +227,9 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        //play death animation
+        Time.timeScale = 0;
+        loseMenu.gameObject.SetActive(true);
     }
 
     
