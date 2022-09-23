@@ -14947,8 +14947,10 @@ MonoBehaviour:
   Walkable:
     serializedVersion: 2
     m_Bits: 1
-  MaxHp: 1000
+  MaxHp: 80
   HpRegen: 1
+  Hp: 0
+  loseMenu: {fileID: 0}
   maxFuel: 100
   currentFuel: 0
   depletionRate: 10
