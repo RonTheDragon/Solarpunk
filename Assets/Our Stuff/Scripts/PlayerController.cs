@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float currentFuel;
     [SerializeField] float depletionRate;
 
+    public HealthBar healthBar;
+
     void Start()
     {
         rb          = GetComponent<Rigidbody2D>();
@@ -42,8 +44,9 @@ public class PlayerController : MonoBehaviour
         MultiTool   = transform.GetChild(0).gameObject;
         cam         = Camera.main;
         currentFuel = maxFuel;
-        anim = GetComponent<Animator>();
-        Hp = MaxHp;
+        anim        = GetComponent<Animator>();
+        Hp          = MaxHp;
+        healthBar.SetMaxHealth(MaxHp);
     }
 
     void Update()
@@ -221,12 +224,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Hp < 0) { Death(); }
 
-        if (Hp < MaxHp) { Hp += HpRegen * Time.deltaTime; }
+        if (Hp < MaxHp) 
+        {
+            Hp += HpRegen * Time.deltaTime;
+            healthBar.SetHealth(Hp);
+        }
     }
 
     public void GetDamage()
     {
         Hp--;
+        healthBar.SetHealth(Hp);
     }
 
     public void Death()
