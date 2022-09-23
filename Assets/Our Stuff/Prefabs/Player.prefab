@@ -14851,7 +14851,7 @@ GameObject:
   - component: {fileID: 1715601538252432223}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14947,6 +14947,8 @@ MonoBehaviour:
   Walkable:
     serializedVersion: 2
     m_Bits: 1
+  MaxHp: 1000
+  HpRegen: 1
   maxFuel: 100
   currentFuel: 0
   depletionRate: 10

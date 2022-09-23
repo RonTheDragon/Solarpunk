@@ -38,4 +38,6 @@ public class GasCloud : MonoBehaviour
         Hp--;
         TheCloud.transform.localScale -= TheCloud.transform.localScale * 0.1f;
     }
+
+  
 }

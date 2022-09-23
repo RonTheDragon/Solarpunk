@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem SuckParticle;
     public LayerMask      Walkable;
 
+    public float MaxHp;
+    public float HpRegen;
+    float Hp;
+
     GameObject MultiTool;
 
     int           SelectedWeapon;
@@ -36,6 +40,8 @@ public class PlayerController : MonoBehaviour
         MultiTool   = transform.GetChild(0).gameObject;
         cam         = Camera.main;
         currentFuel = maxFuel;
+
+        Hp = MaxHp;
     }
 
     void Update()
@@ -44,6 +50,7 @@ public class PlayerController : MonoBehaviour
         Jumping();
         Aim();
         ToolSwitching();
+        HealthSystem();
 
         switch (SelectedWeapon)
         {
@@ -204,5 +211,34 @@ public class PlayerController : MonoBehaviour
         PurpleParticle.Stop();
         WaterParticle.Stop();
 
+    }
+
+    void HealthSystem()
+    {
+
+
+        if (Hp < 0) { Death(); }
+
+        if (Hp < MaxHp) { Hp += HpRegen * Time.deltaTime; }
+    }
+
+    public void GetDamage()
+    {
+        Hp--;
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            GetDamage();
+        }
     }
 }
