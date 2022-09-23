@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         Walking();
         Jumping();
         Aim();
+        ToolSwitching();
 
         switch (SelectedWeapon)
         {
@@ -81,9 +82,18 @@ public class PlayerController : MonoBehaviour
         MultiTool.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    void SoundSwitching()
+    void ToolSwitching()
     {
-       // if ()
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SelectedWeapon++;
+            if (SelectedWeapon > 1) SelectedWeapon = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SelectedWeapon--;
+            if (SelectedWeapon < 0) SelectedWeapon = 1;
+        }
     }
 
     private bool IsGrounded()
@@ -126,6 +136,7 @@ public class PlayerController : MonoBehaviour
         {
             PurpleParticle.Stop();
         }
+        WaterParticle.Stop();
     }
 
     void WaterGun()
@@ -139,5 +150,6 @@ public class PlayerController : MonoBehaviour
         {
             WaterParticle.Stop();
         }
+            PurpleParticle.Stop();
     }
 }
