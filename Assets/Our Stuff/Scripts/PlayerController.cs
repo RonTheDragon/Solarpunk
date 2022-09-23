@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem WaterParticle;
     public ParticleSystem SuckParticle;
     public LayerMask      Walkable;
-    public Animator anim;
+    Animator anim;
 
     public           float MaxHp;
     public           float HpRegen;
