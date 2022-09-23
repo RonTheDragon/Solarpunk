@@ -125,17 +125,25 @@ public class PlayerController : MonoBehaviour
         {
             SelectedWeapon++;
             if (SelectedWeapon > 2) SelectedWeapon = 0;
+            Switched();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SelectedWeapon--;
             if (SelectedWeapon < 0) SelectedWeapon = 2;
+            Switched();
         }
+        
+    }
+
+    void Switched()
+    {
+        WaterCannon.SetActive(false); SuckCannon.SetActive(false); PurpleCannon.SetActive(false);
         switch (SelectedWeapon)
         {
-            case 0: PurpleCannon.SetActive(true); WaterCannon.SetActive(false);  SuckCannon.SetActive(false);  break;
-            case 1: WaterCannon.SetActive(true);  PurpleCannon.SetActive(false); SuckCannon.SetActive(false);  break;
-            case 2: SuckCannon.SetActive(true);   PurpleCannon.SetActive(false); WaterCannon.SetActive(false); break;
+            case 0: PurpleCannon.SetActive(true);   break;
+            case 1: WaterCannon.SetActive(true);  break;
+            case 2: SuckCannon.SetActive(true);  break;
         }
     }
 
