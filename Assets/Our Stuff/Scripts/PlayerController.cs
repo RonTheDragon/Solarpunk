@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float     MovementSpeed;
-    public float     JumpHeight;
-    public float     JetPackPower;
-    public float     GroundCheckSize = 0.1f;
-    public float     MaxSpeed;
-    public GameObject PurpleCannon;
-    public GameObject WaterCannon;
-    public GameObject SuckCannon;
+    public float          MovementSpeed;
+    public float          JumpHeight;
+    public float          JetPackPower;
+    public float          GroundCheckSize = 0.1f;
+    public float          MaxSpeed;
+    public GameObject     PurpleCannon;
+    public GameObject     WaterCannon;
+    public GameObject     SuckCannon;
     public ParticleSystem PurpleParticle;
     public ParticleSystem WaterParticle;
     public ParticleSystem SuckParticle;
-    public LayerMask Walkable;
+    public LayerMask      Walkable;
 
     GameObject MultiTool;
 
-    int SelectedWeapon;
+    int           SelectedWeapon;
     float         MovementX = 0;
     Rigidbody2D   rb;
-    Collider2D _collider;
+    Collider2D    _collider;
     Camera        cam;
-   
+
+    [SerializeField] float maxFuel;
+    [SerializeField] float currentFuel;
+    [SerializeField] float depletionRate;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
-        MultiTool = transform.GetChild(0).gameObject;
-        cam = Camera.main;
+        rb          = GetComponent<Rigidbody2D>();
+        _collider   = GetComponent<Collider2D>();
+        MultiTool   = transform.GetChild(0).gameObject;
+        cam         = Camera.main;
+        currentFuel = maxFuel;
     }
 
     void Update()
@@ -43,8 +48,8 @@ public class PlayerController : MonoBehaviour
         switch (SelectedWeapon)
         {
             case 0: JetPackGun(); break;
-            case 1: WaterGun(); break;
-            case 2: SuckGun(); break;
+            case 1: WaterGun();   break;
+            case 2: SuckGun();    break;
         }
     }
 
@@ -85,7 +90,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 
-                    rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude-Time.deltaTime);
+                rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude-Time.deltaTime);
                 
             }
         }
@@ -93,9 +98,9 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        Vector3 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 AimDirection = (MousePos - MultiTool.transform.position).normalized;
-        float angle = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
+        Vector3 MousePos                = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 AimDirection            = (MousePos - MultiTool.transform.position).normalized;
+        float angle                     = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
         MultiTool.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
@@ -113,10 +118,15 @@ public class PlayerController : MonoBehaviour
         }
         switch (SelectedWeapon)
         {
-            case 0: PurpleCannon.SetActive(true); WaterCannon.SetActive(false); SuckCannon.SetActive(false); break;
-            case 1: WaterCannon.SetActive(true); PurpleCannon.SetActive(false); SuckCannon.SetActive(false); break;
-            case 2: SuckCannon.SetActive(true); PurpleCannon.SetActive(false); WaterCannon.SetActive(false); break;
+            case 0: PurpleCannon.SetActive(true); WaterCannon.SetActive(false);  SuckCannon.SetActive(false);  break;
+            case 1: WaterCannon.SetActive(true);  PurpleCannon.SetActive(false); SuckCannon.SetActive(false);  break;
+            case 2: SuckCannon.SetActive(true);   PurpleCannon.SetActive(false); WaterCannon.SetActive(false); break;
         }
+    }
+
+    void Fuel()
+    {
+        currentFuel -= depletionRate * Time.deltaTime;
     }
 
     private bool IsGrounded()
@@ -149,12 +159,13 @@ public class PlayerController : MonoBehaviour
 
     void JetPackGun()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && currentFuel > 0)
         {
            // rb.velocity = MultiTool.transform.right * JetPackPower * Time.deltaTime;
             rb.AddForce(-MultiTool.transform.right * JetPackPower * Time.deltaTime);
             if (!PurpleParticle.isEmitting)
             PurpleParticle.Play();
+            Fuel();
         }
         else
         {
