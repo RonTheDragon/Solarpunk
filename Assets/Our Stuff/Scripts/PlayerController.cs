@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float     MaxSpeed;
     public ParticleSystem PurpleParticle;
     public ParticleSystem WaterParticle;
+    public ParticleSystem SuckParticle;
     public LayerMask Walkable;
 
     GameObject MultiTool;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             case 0: JetPackGun(); break;
             case 1: WaterGun(); break;
+            case 2: SuckGun(); break;
         }
     }
 
@@ -77,6 +79,12 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity += new Vector2(0, JumpHeight);
             }
+            else
+            {
+                
+                    rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude-Time.deltaTime);
+                
+            }
         }
     }
 
@@ -93,12 +101,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             SelectedWeapon++;
-            if (SelectedWeapon > 1) SelectedWeapon = 0;
+            if (SelectedWeapon > 2) SelectedWeapon = 0;
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             SelectedWeapon--;
-            if (SelectedWeapon < 0) SelectedWeapon = 1;
+            if (SelectedWeapon < 0) SelectedWeapon = 2;
         }
     }
 
@@ -144,6 +152,7 @@ public class PlayerController : MonoBehaviour
             PurpleParticle.Stop();
         }
         WaterParticle.Stop();
+        SuckParticle.Stop();
     }
 
     void WaterGun()
@@ -158,5 +167,22 @@ public class PlayerController : MonoBehaviour
             WaterParticle.Stop();
         }
             PurpleParticle.Stop();
+        SuckParticle.Stop();
+    }
+
+    void SuckGun()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!SuckParticle.isEmitting)
+                SuckParticle.Play();
+        }
+        else
+        {
+            SuckParticle.Stop();
+        }
+        PurpleParticle.Stop();
+        WaterParticle.Stop();
+
     }
 }
