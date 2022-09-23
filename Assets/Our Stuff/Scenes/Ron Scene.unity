@@ -208,7 +208,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.39000797, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.1981132, b: 0.016320199, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.39000797, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.1981132, b: 0.016320199, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -426,7 +426,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.39000797, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.1981132, b: 0.016320199, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -514,10 +514,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2057001815, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
-      propertyPath: ShapeModule.length
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1715601538252432219, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
       propertyPath: m_Name
       value: Player

@@ -4816,6 +4816,7 @@ GameObject:
   - component: {fileID: 2057001813}
   - component: {fileID: 2057001815}
   - component: {fileID: 2057001814}
+  - component: {fileID: 5281441829079502240}
   m_Layer: 3
   m_Name: SUCK
   m_TagString: Untagged
@@ -5466,7 +5467,7 @@ ParticleSystem:
     enabled: 1
     type: 8
     angle: 50
-    length: 2
+    length: 4
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
@@ -8592,7 +8593,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9609,6 +9610,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5281441829079502240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057001812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469220b12cafbe844940f45bcaef25e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: 1
 --- !u!1 &2066263059
 GameObject:
   m_ObjectHideFlags: 0
@@ -14427,6 +14441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469220b12cafbe844940f45bcaef25e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: 0
 --- !u!1 &423918784616137312
 GameObject:
   m_ObjectHideFlags: 0
