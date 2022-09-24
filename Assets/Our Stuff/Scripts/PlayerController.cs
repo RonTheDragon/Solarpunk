@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float           MovementSpeed;
-    public float           JumpHeight;
-    public float           JetPackPower;
-    public float           GroundCheckSize = 0.1f;
-    public float           MaxSpeed;
-    public GameObject      PurpleCannon;
-    public GameObject      WaterCannon;
-    public GameObject      SuckCannon;
-    public ParticleSystem  PurpleParticle;
-    public ParticleSystem  WaterParticle;
-    public ParticleSystem  SuckParticle;
-    public LayerMask       Walkable;
-           Animator        anim;
-    [SerializeField] float damage;
+    public           float          MovementSpeed;
+    public           float          JumpHeight;
+    public           float          JetPackPower;
+    public           float          GroundCheckSize = 0.1f;
+    public           float          MaxSpeed;
+    public           GameObject     PurpleCannon;
+    public           GameObject     WaterCannon;
+    public           GameObject     SuckCannon;
+    public           ParticleSystem PurpleParticle;
+    public           ParticleSystem WaterParticle;
+    public           ParticleSystem SuckParticle;
+    public           LayerMask      Walkable;
+                     Animator       anim;
+    [SerializeField] float          damage;
 
-    public           float maxHp;
+    public           float maxHp;                      //HEALTH
     public           float HpRegen;
     [SerializeField] float Hp;
     private          bool  alreadyDead;
@@ -34,16 +34,20 @@ public class PlayerController : MonoBehaviour
                      Camera      cam;
     [SerializeField] GameObject  loseMenu;
 
-    [SerializeField] float maxFuel;
+    [SerializeField] float maxFuel;                    //FUEL
     [SerializeField] float currentFuel;
     [SerializeField] float fuelRegen;
     [SerializeField] float fuelDepletionRate;
     private          float fuelSoundCooldown;
 
-    [SerializeField] float maxWater;
+    [SerializeField] float maxWater;                   //WATER
     [SerializeField] float water;
     [SerializeField] float waterDepletionRate;
     private          float waterSoundCooldown;
+
+    private          bool  alreadyStartedSucking;      //SUCKING
+    private          float startSuckingSoundCooldown;
+    private          float middleSuckingSoundCooldown;
 
     public HealthBar healthBar;
     public HealthBar fuelBar;
@@ -159,6 +163,7 @@ public class PlayerController : MonoBehaviour
     void Switched()
     {
         audioManager.PlaySound(Sound.Activation.Custom, "Mode Change");
+        alreadyStartedSucking = false;
         WaterCannon.SetActive(false); SuckCannon.SetActive(false); PurpleCannon.SetActive(false);
         switch (SelectedWeapon)
         {
@@ -259,11 +264,26 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             if (!SuckParticle.isEmitting)
+            {
+                if (alreadyStartedSucking && startSuckingSoundCooldown <= 0 && middleSuckingSoundCooldown <= 0)
+                {
+                    audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Middle");
+                    middleSuckingSoundCooldown = 1;
+                }
+                if (!alreadyStartedSucking)
+                {
+                    audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Start");
+                }
+                startSuckingSoundCooldown -= Time.deltaTime;
                 SuckParticle.Play();
+                alreadyStartedSucking = true;
+            }
         }
         else
         {
             SuckParticle.Stop();
+            alreadyStartedSucking = false;
+            startSuckingSoundCooldown = 1;
         }
         PurpleParticle.Stop();
         WaterParticle.Stop();
@@ -277,7 +297,11 @@ public class PlayerController : MonoBehaviour
         }
         if (fuelSoundCooldown > 0)
         {
-        fuelSoundCooldown -= Time.deltaTime;
+            fuelSoundCooldown -= Time.deltaTime;
+        }
+        if (fuelSoundCooldown > 0)
+        {
+            middleSuckingSoundCooldown -= Time.deltaTime;
         }
     }
 

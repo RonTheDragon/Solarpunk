@@ -46,10 +46,6 @@ public class GameManager : MonoBehaviour
     void UpdateTreesUI()
     {
         treesCounter.text = TreesGrown + "/" + TreesTotal;
-        //display X/Y
-        //X is trees grown
-        //Y is the trees total
-
     }
 
     void Win()
