@@ -1612,6 +1612,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 667094453, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: Sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 667094453, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: Sounds.Array.data[1].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f105253cd68017e43bd635b8ddcc24cf, type: 3}
+    - target: {fileID: 667094453, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: Sounds.Array.data[1].Name
+      value: Win Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 724300216, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
       propertyPath: Sounds.Array.size
       value: 10

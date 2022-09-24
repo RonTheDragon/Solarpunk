@@ -57,8 +57,7 @@ public class Plant : MonoBehaviour
 
     void UpdateTreeSprite()
     {
-        Debug.Log(water);
-        int wot = 0;
+        float wot = (WaterNeeded / sprites.Length); 
         for (int i = 0; i < sprites.Length-1; i++)
         {
             if (water <= wot)

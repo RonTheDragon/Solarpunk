@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     void Win()
     {
+      //  audioManager.PlaySound(Sound.Activation.Custom, "Win Theme");
         winMenu.SetActive(true);
         Time.timeScale = 0;
     }

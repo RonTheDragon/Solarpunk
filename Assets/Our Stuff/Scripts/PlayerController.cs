@@ -344,7 +344,7 @@ public class PlayerController : MonoBehaviour
             //play death animation
             audioManager.PlaySound(Sound.Activation.Custom, "Death");
             audioManager.PlaySound(Sound.Activation.Custom, "Lose Theme");
-           // GameManager.instance.gameObject.GetComponent<>
+            GameManager.instance.gameObject.GetComponent<AudioManager>().StopAllSound();
             Time.timeScale = 0;
             loseMenu.gameObject.SetActive(true);
             alreadyDead = true;
