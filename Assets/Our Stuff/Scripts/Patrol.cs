@@ -14,10 +14,13 @@ public class Patrol : MonoBehaviour
     [SerializeField] float     minY;
     [SerializeField] float     maxY;
 
+    [SerializeField] bool CustomPatrol;
+    [SerializeField] Transform[] Positions;
+
     private void Start()
     {
         waitTime = startWaitTime;
-        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        Move();
     }
 
     private void FixedUpdate()
@@ -28,7 +31,7 @@ public class Patrol : MonoBehaviour
         {
             if (waitTime <= 0)
             {
-                moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+                Move();
                 waitTime = startWaitTime;
             }
 
@@ -37,5 +40,15 @@ public class Patrol : MonoBehaviour
                 waitTime -= Time.deltaTime;
             }
         }
+    }
+
+    void Move()
+    {
+        if (CustomPatrol)
+        {
+            moveSpot.position = Positions[Random.Range(0, Positions.Length)].position;
+        }
+        else
+        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 }

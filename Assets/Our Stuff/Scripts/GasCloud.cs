@@ -13,7 +13,7 @@ public class GasCloud : MonoBehaviour
 
     float respawnTimeLeft;
 
-    Vector2 StartingScale;
+    Vector3 StartingScale;
 
     // Start is called before the first frame update
     void Start()
