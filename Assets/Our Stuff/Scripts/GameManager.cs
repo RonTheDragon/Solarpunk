@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public        int         TreesTotal;
 
     [SerializeField] GameObject winMenu;
+    [SerializeField] TMP_Text treesCounter;
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTreesUI()
     {
+        treesCounter.text = TreesGrown + "/" + TreesTotal;
         //display X/Y
         //X is trees grown
         //Y is the trees total
