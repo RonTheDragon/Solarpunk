@@ -252,6 +252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f0e0c1ab10349548b36138c802fbb5b, type: 3}
+--- !u!1 &2356473236259346149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2908518649464365335, guid: 4f0e0c1ab10349548b36138c802fbb5b, type: 3}
+  m_PrefabInstance: {fileID: 643730666337875954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2356473236259346147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2908518649464365329, guid: 4f0e0c1ab10349548b36138c802fbb5b, type: 3}
@@ -262,12 +267,58 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2908518649464365330, guid: 4f0e0c1ab10349548b36138c802fbb5b, type: 3}
   m_PrefabInstance: {fileID: 643730666337875954}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2356473236259346149}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fae4452bf582ec4daa923c6ffb1f17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &667094453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356473236259346149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dcf4c54b19607499530938a98e59c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: Main Theme
+    activation: 0
+    Clip: {fileID: 8300000, guid: 239060f075d62164294ecf303705ea7e, type: 3}
+    Loop: 1
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Lose Theme
+    activation: 0
+    Clip: {fileID: 8300000, guid: d643a4e13da50914cb7cc03506f96fa6, type: 3}
+    Loop: 1
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Win Theme
+    activation: 0
+    Clip: {fileID: 8300000, guid: f105253cd68017e43bd635b8ddcc24cf, type: 3}
+    Loop: 1
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
 --- !u!1001 &2356473235444774630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1715601538252432220, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.38
+      value: -0.995
       objectReference: {fileID: 0}
     - target: {fileID: 1715601538252432220, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
       propertyPath: m_LocalPosition.z
