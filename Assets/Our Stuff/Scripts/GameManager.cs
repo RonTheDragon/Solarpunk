@@ -13,14 +13,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winMenu;
     [SerializeField] TMP_Text treesCounter;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
+        audioManager = GetComponent<AudioManager>();
         instance = this;
         Canvas.SetActive(true);
     }
     void Start()
     {
         Time.timeScale = 0;
+        audioManager.PlaySound(Sound.Activation.Custom, "Main Theme");
     }
 
     private void Update()
