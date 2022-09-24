@@ -17,8 +17,11 @@ public class Patrol : MonoBehaviour
     [SerializeField] bool CustomPatrol;
     [SerializeField] Transform[] Positions;
 
+    Vector3 StartPosition;
+
     private void Start()
     {
+        StartPosition = transform.position;
         waitTime = startWaitTime;
         Move();
     }
@@ -49,6 +52,6 @@ public class Patrol : MonoBehaviour
             moveSpot.position = Positions[Random.Range(0, Positions.Length)].position;
         }
         else
-        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        moveSpot.position = new Vector2(StartPosition.x+Random.Range(minX, maxX), StartPosition.y + Random.Range(minY, maxY));
     }
 }
