@@ -8,8 +8,9 @@ public class Plant : MonoBehaviour
     public int WaterNeeded = 30;
     bool TreeFullGrown;
 
-    GameObject DeadTree;
-    GameObject GoodTree;
+    GameObject Tree;
+    SpriteRenderer TreeSprite;
+    public Sprite[] sprites;
     // Start is called before the first frame update
 
 
@@ -17,24 +18,24 @@ public class Plant : MonoBehaviour
     {
         GameManager.instance.AddTreeToTotal();
         water = 0;
-        if (DeadTree == null)
+        if (Tree == null)
         {
-            DeadTree = transform.GetChild(0).gameObject;
-            GoodTree = transform.GetChild(1).gameObject;
-            DeadTree.SetActive(true);
-            GoodTree.SetActive(false);
+            Tree = transform.GetChild(0).gameObject;
+            TreeSprite = Tree.GetComponent<SpriteRenderer>();
+            TreeSprite.sprite = sprites[0];
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (water > WaterNeeded && !TreeFullGrown)
+        if (water >= WaterNeeded && !TreeFullGrown)
         {
-            DeadTree.SetActive(false);
-            GoodTree.SetActive(true);
+          //  DeadTree.SetActive(false);
+            //GoodTree.SetActive(true);
             GameManager.instance.TreeGrown();
             TreeFullGrown = true;
+            TreeSprite.sprite = sprites[sprites.Length-1];
         }
     }
 
@@ -42,6 +43,7 @@ public class Plant : MonoBehaviour
     {
         if (!TreeFullGrown)
         water++;
+        UpdateTreeSprite();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -49,6 +51,25 @@ public class Plant : MonoBehaviour
         if (collision.transform.tag == "Enemy" && !TreeFullGrown)
         {
             water = 0;
+            UpdateTreeSprite();
+        }
+    }
+
+    void UpdateTreeSprite()
+    {
+        Debug.Log(water);
+        int wot = 0;
+        for (int i = 0; i < sprites.Length-1; i++)
+        {
+            if (water <= wot)
+            {
+                TreeSprite.sprite = sprites[i];
+                return;
+            }
+            else
+            {
+                wot += (WaterNeeded / sprites.Length);
+            }
         }
     }
 }

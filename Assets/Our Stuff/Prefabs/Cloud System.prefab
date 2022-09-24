@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6111669783590871743}
   - component: {fileID: 1995462339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cloud System
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6111669784874403923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoveSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 915789310}
   - component: {fileID: 915789312}
   - component: {fileID: 915789311}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cloud
   m_TagString: Enemy
   m_Icon: {fileID: 0}
