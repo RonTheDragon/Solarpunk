@@ -5,8 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int TreesGrown;
-    public int TreesTotal;
+    public        int         TreesGrown;
+    public        int         TreesTotal;
+
+    [SerializeField] GameObject winMenu;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Win()
     {
-        //Open Menu
+        winMenu.SetActive(true);
         Time.timeScale = 0;
     }
 }
