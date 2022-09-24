@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public           float maxHp;                      //HEALTH
     public           float HpRegen;
     [SerializeField] float Hp;
-    private          bool  alreadyDead;
+    public           bool  alreadyDead;
     private          float damageSoundCooldown;
 
     private          bool  alreadyLanded;
@@ -343,6 +343,7 @@ public class PlayerController : MonoBehaviour
         {
             //play death animation
             audioManager.PlaySound(Sound.Activation.Custom, "Death");
+            audioManager.PlaySound(Sound.Activation.Custom, "Lose Theme");
             Time.timeScale = 0;
             loseMenu.gameObject.SetActive(true);
             alreadyDead = true;
