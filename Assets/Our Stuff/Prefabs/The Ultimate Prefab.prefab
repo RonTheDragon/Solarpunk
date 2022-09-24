@@ -271,6 +271,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3957701192068151320}
     m_Modifications:
+    - target: {fileID: 2066263060, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066263062, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066263062, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715601536796853123, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715601536925644290, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715601537515890820, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: m_FollowOffset.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1715601538252432219, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -332,9 +356,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2928626532818201571}
     - target: {fileID: 1715601538252432223, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: fuelRegen
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715601538252432223, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 7418450994657287719}
+    - target: {fileID: 1715601538252432223, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: fuelDepletionRate
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715601538252432223, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
+      propertyPath: waterDepletionRate
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c650471f2f863f648999c0ad0aaf5c0c, type: 3}
 --- !u!4 &3998305238942537146 stripped
