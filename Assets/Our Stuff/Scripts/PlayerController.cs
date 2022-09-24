@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         Aim();
         ToolSwitching();
         HealthSystem();
+        CooldownManager();
 
         switch (SelectedWeapon)
         {
@@ -171,7 +172,6 @@ public class PlayerController : MonoBehaviour
     {
         currentFuel -= fuelDepletionRate * Time.deltaTime;
         fuelBar.SetHealth(currentFuel);
-        fuelSoundCooldown -= Time.deltaTime;
     }
 
     private bool IsGrounded()
@@ -269,13 +269,20 @@ public class PlayerController : MonoBehaviour
         WaterParticle.Stop();
     }
 
-    void HealthSystem()
+    void CooldownManager()
     {
         if (damageSoundCooldown > 0)
         {
             damageSoundCooldown -= Time.deltaTime;
         }
+        if (fuelSoundCooldown > 0)
+        {
+        fuelSoundCooldown -= Time.deltaTime;
+        }
+    }
 
+    void HealthSystem()
+    {
         if (Hp < 0) { Death(); }
 
         if (Hp < maxHp) 
