@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private          bool  alreadyDead;
     private          float damageSoundCooldown;
 
+    private          bool  alreadyLanded;
+
     GameObject MultiTool;
 
                      int         SelectedWeapon;
@@ -129,6 +131,15 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude - Time.deltaTime);
             }
+            if (!alreadyLanded)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Landing");
+                alreadyLanded = true;
+            }
+        }
+        else
+        {
+            alreadyLanded = false;
         }
     }
 
@@ -265,25 +276,29 @@ public class PlayerController : MonoBehaviour
         {
             if (!SuckParticle.isEmitting)
             {
-                if (alreadyStartedSucking && startSuckingSoundCooldown <= 0 && middleSuckingSoundCooldown <= 0)
-                {
-                    audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Middle");
-                    middleSuckingSoundCooldown = 1;
-                }
                 if (!alreadyStartedSucking)
                 {
                     audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Start");
+                    middleSuckingSoundCooldown = 1.5f;
                 }
-                startSuckingSoundCooldown -= Time.deltaTime;
                 SuckParticle.Play();
                 alreadyStartedSucking = true;
+            }
+            if (alreadyStartedSucking && middleSuckingSoundCooldown <= 0)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Middle");
+                middleSuckingSoundCooldown = 1;
             }
         }
         else
         {
             SuckParticle.Stop();
+            if (alreadyStartedSucking)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Vacuum Stop");
+            }
             alreadyStartedSucking = false;
-            startSuckingSoundCooldown = 1;
+            startSuckingSoundCooldown = 1.5f;
         }
         PurpleParticle.Stop();
         WaterParticle.Stop();
@@ -299,7 +314,7 @@ public class PlayerController : MonoBehaviour
         {
             fuelSoundCooldown -= Time.deltaTime;
         }
-        if (fuelSoundCooldown > 0)
+        if (middleSuckingSoundCooldown > 0)
         {
             middleSuckingSoundCooldown -= Time.deltaTime;
         }
