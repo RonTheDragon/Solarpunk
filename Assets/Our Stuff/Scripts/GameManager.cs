@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public        int         TreesGrown;
     public        int         TreesTotal;
+    public GameObject Canvas;
 
     [SerializeField] GameObject winMenu;
     [SerializeField] TMP_Text treesCounter;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Canvas.SetActive(true);
     }
     void Start()
     {
