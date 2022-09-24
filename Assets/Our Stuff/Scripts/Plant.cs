@@ -11,8 +11,11 @@ public class Plant : MonoBehaviour
     GameObject DeadTree;
     GameObject GoodTree;
     // Start is called before the first frame update
+
+
     void Start()
     {
+        GameManager.instance.AddTree();
         water = 0;
         if (DeadTree == null)
         {
@@ -30,7 +33,7 @@ public class Plant : MonoBehaviour
         {
             DeadTree.SetActive(false);
             GoodTree.SetActive(true);
-            GameManager.instance.TreesGrown++;
+            GameManager.instance.TreeGrown();
             TreeFullGrown = true;
         }
     }

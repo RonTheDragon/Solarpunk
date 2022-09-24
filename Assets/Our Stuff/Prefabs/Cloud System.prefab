@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0fde390544b1242be57c9f74084a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 10
+  MaxHp: 30
   TheCloud: {fileID: 6111669785262908802}
   RespawnCooldown: 30
 --- !u!1 &6111669784874403922
@@ -184,6 +184,8 @@ MonoBehaviour:
   maxX: 8
   minY: 0
   maxY: 5
+  CustomPatrol: 0
+  Positions: []
 --- !u!50 &915789309
 Rigidbody2D:
   serializedVersion: 4

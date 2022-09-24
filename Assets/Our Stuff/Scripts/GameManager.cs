@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int TreesGrown;
+    public int TreesTotal;
 
     private void Awake()
     {
@@ -13,6 +14,37 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 0;
+    }
+
+    private void Update()
+    {
+        if (TreesTotal == TreesGrown)
+        {
+            Win();
+        }
+    }
+
+    public void TreeGrown()
+    {
+        TreesGrown++;
+        UpdateTreesUI();
+    }
+
+    public void AddTree()
+    {
+        TreesTotal++;
+        UpdateTreesUI();
+    }
+
+    void UpdateTreesUI()
+    {
+
+    }
+
+    void Win()
+    {
+        //Open Menu
         Time.timeScale = 0;
     }
 }

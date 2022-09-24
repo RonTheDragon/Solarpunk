@@ -36,7 +36,7 @@ public class GasCloud : MonoBehaviour
     public void Sucked()
     {
         Hp--;
-        TheCloud.transform.localScale -= TheCloud.transform.localScale * 0.1f;
+        TheCloud.transform.localScale -= TheCloud.transform.localScale /MaxHp;
     }
 
   

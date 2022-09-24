@@ -124,10 +124,13 @@ public class PlayerController : MonoBehaviour
 
     void Aim()
     {
-        Vector3 MousePos                = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 AimDirection            = (MousePos - MultiTool.transform.position).normalized;
-        float angle                     = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
-        MultiTool.transform.eulerAngles = new Vector3(0, 0, angle);
+        if (Time.timeScale == 1)
+        {
+            Vector3 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 AimDirection = (MousePos - MultiTool.transform.position).normalized;
+            float angle = Mathf.Atan2(AimDirection.y, AimDirection.x) * Mathf.Rad2Deg;
+            MultiTool.transform.eulerAngles = new Vector3(0, 0, angle);
+        }
     }
 
     void ToolSwitching()
