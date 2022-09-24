@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         UpdateTreesUI();
     }
 
-    public void AddTree()
+    public void AddTreeToTotal()
     {
         TreesTotal++;
         UpdateTreesUI();
@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
 
     void UpdateTreesUI()
     {
+        //display X/Y
+        //X is trees grown
+        //Y is the trees total
 
     }
 

@@ -15,7 +15,7 @@ public class Plant : MonoBehaviour
 
     void Start()
     {
-        GameManager.instance.AddTree();
+        GameManager.instance.AddTreeToTotal();
         water = 0;
         if (DeadTree == null)
         {
