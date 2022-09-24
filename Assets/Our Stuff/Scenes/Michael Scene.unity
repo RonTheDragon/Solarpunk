@@ -242,6 +242,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa422694cb25e024c8350bba347f04ce, type: 3}
+--- !u!1 &724300210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3998305238942537149, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+  m_PrefabInstance: {fileID: 2356473236016325902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &724300216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724300210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dcf4c54b19607499530938a98e59c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: Death
+    activation: 0
+    Clip: {fileID: 8300000, guid: 475a7b3a91cef964fb5d1d1d07ba4108, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
 --- !u!1 &1316948611
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +571,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2356473234785323023, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356473234969101444, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356473236141967284, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_text
+      value: Next Area
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356473236505904197, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356473236505904199, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_Name
+      value: Next BTN
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356473236540578352, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3957701192068151320, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -593,10 +646,6 @@ PrefabInstance:
     - target: {fileID: 5184699597816327221, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6645157522348315275, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 195
       objectReference: {fileID: 0}
     - target: {fileID: 7418450996636057143, guid: bdd407a9ed9554c4084648de837d8f71, type: 3}
       propertyPath: m_AnchorMax.x

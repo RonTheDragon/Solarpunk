@@ -22,4 +22,9 @@ public class Buttons : MonoBehaviour
         Time.timeScale = 1;
         mainMenu.SetActive(false);
     }
+
+    public void NextArea()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

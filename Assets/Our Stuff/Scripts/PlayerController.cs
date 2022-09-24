@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public           float maxHp;
     public           float HpRegen;
     [SerializeField] float Hp;
+    private          bool  alreadyDead;
+    private          float damageSoundCooldown;
 
     GameObject MultiTool;
 
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float currentFuel;
     [SerializeField] float fuelRegen;
     [SerializeField] float fuelDepletionRate;
+    private          float fuelSoundCooldown;
 
     [SerializeField] float maxWater;
     [SerializeField] float water;
@@ -45,16 +48,19 @@ public class PlayerController : MonoBehaviour
     public HealthBar fuelBar;
     public HealthBar waterBar;
 
+    AudioManager audioManager;
+
     void Start()
     {
-        rb          = GetComponent<Rigidbody2D>();
-        _collider   = GetComponent<Collider2D>();
-        MultiTool   = transform.GetChild(0).gameObject;
-        cam         = Camera.main;
-        anim        = GetComponent<Animator>();
-        Hp          = maxHp;
-        currentFuel = maxFuel;
-        water       = maxWater;
+        audioManager = GetComponent<AudioManager>();
+        rb           = GetComponent<Rigidbody2D>();
+        _collider    = GetComponent<Collider2D>();
+        MultiTool    = transform.GetChild(0).gameObject;
+        cam          = Camera.main;
+        anim         = GetComponent<Animator>();
+        Hp           = maxHp;
+        currentFuel  = maxFuel;
+        water        = maxWater;
         healthBar.SetMaxHealth(maxHp);
         fuelBar.SetMaxHealth(maxFuel);
         waterBar.SetMaxHealth(maxWater);
@@ -115,9 +121,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                
                 rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude - Time.deltaTime);
-                
             }
         }
     }
@@ -165,6 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         currentFuel -= fuelDepletionRate * Time.deltaTime;
         fuelBar.SetHealth(currentFuel);
+        fuelSoundCooldown -= Time.deltaTime;
     }
 
     private bool IsGrounded()
@@ -208,6 +213,11 @@ public class PlayerController : MonoBehaviour
             if (!PurpleParticle.isEmitting)
             PurpleParticle.Play();
             Fuel();
+            if (fuelSoundCooldown <= 0 && Time.timeScale != 0)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Jetpack");
+                fuelSoundCooldown = 0.5f;
+            }
         }
         else
         {
@@ -253,6 +263,11 @@ public class PlayerController : MonoBehaviour
 
     void HealthSystem()
     {
+        if (damageSoundCooldown > 0)
+        {
+            damageSoundCooldown -= Time.deltaTime;
+        }
+
         if (Hp < 0) { Death(); }
 
         if (Hp < maxHp) 
@@ -270,19 +285,29 @@ public class PlayerController : MonoBehaviour
 
     public void Death()
     {
-        //play death animation
-        Time.timeScale = 0;
-        loseMenu.gameObject.SetActive(true);
+        if (!alreadyDead)
+        {
+            //play death animation
+            audioManager.PlaySound(Sound.Activation.Custom, "Death");
+            Time.timeScale = 0;
+            loseMenu.gameObject.SetActive(true);
+            alreadyDead = true;
+        }
     }
 
     
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision) //TAKE DAMAGE
     {
         if (collision.transform.tag == "Enemy")
         {
             Hp -= damage * Time.deltaTime;
             healthBar.SetHealth(Hp);
+            if (damageSoundCooldown <= 0)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Damage");
+                damageSoundCooldown = 3;
+            }
         }
     }
 
