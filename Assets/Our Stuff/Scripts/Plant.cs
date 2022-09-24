@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    int water;
+    [SerializeField] int water;
+    public int WaterNeeded = 30;
+    bool TreeFullGrown;
+
     GameObject DeadTree;
     GameObject GoodTree;
     // Start is called before the first frame update
@@ -23,21 +26,24 @@ public class Plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (water > 30)
+        if (water > WaterNeeded && !TreeFullGrown)
         {
             DeadTree.SetActive(false);
             GoodTree.SetActive(true);
+            GameManager.instance.TreesGrown++;
+            TreeFullGrown = true;
         }
     }
 
     public void GetWatered()
     {
+        if (!TreeFullGrown)
         water++;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Enemy")
+        if (collision.transform.tag == "Enemy" && !TreeFullGrown)
         {
             water = 0;
         }
