@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eea3ab11e8122a449573b4b98c46c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TreesGrown: 0
+  TreesTotal: 0
+  winMenu: {fileID: 0}
+  treesCounter: {fileID: 0}
 --- !u!114 &2908518649464365330
 MonoBehaviour:
   m_ObjectHideFlags: 0

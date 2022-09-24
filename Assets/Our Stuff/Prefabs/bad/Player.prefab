@@ -14948,14 +14948,21 @@ MonoBehaviour:
   Walkable:
     serializedVersion: 2
     m_Bits: 1
-  anim: {fileID: 0}
-  MaxHp: 80
+  damage: 70
+  maxHp: 80
   HpRegen: 1
   Hp: 0
   loseMenu: {fileID: 0}
   maxFuel: 100
   currentFuel: 0
-  depletionRate: 10
+  fuelRegen: 20
+  fuelDepletionRate: 10
+  maxWater: 100
+  water: 0
+  waterDepletionRate: 10
+  healthBar: {fileID: 0}
+  fuelBar: {fileID: 0}
+  waterBar: {fileID: 0}
 --- !u!95 &1956016169
 Animator:
   serializedVersion: 3
