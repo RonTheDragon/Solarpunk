@@ -179,6 +179,10 @@ public class PlayerController : MonoBehaviour
 
         if (ImGrounded)
         {
+            if (raycastHit.collider.isTrigger)
+            {
+                ImGrounded = false;
+            }
             raycolor = Color.green;
         }
         else
