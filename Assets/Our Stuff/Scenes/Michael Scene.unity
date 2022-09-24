@@ -271,6 +271,83 @@ MonoBehaviour:
     Pitch: 1
     RandomizedPitch: 0
     source: {fileID: 0}
+  - Name: Damage
+    activation: 0
+    Clip: {fileID: 8300000, guid: 47ae934a203f3f0419fd95e3f8ded9af, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Jetpack
+    activation: 0
+    Clip: {fileID: 8300000, guid: b2aedd8c1c31a654e8d099d837461757, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Mode Change
+    activation: 0
+    Clip: {fileID: 8300000, guid: e325e0f5c44cf714689b6b2e7b06b1d6, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Vacuum Start
+    activation: 0
+    Clip: {fileID: 8300000, guid: 7ba70e6ba696c4344ad1777d11a509ac, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Vacuum Middle
+    activation: 0
+    Clip: {fileID: 8300000, guid: ce1f8be31f87b454faa1a500d915d77c, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Vacuum Stop
+    activation: 0
+    Clip: {fileID: 8300000, guid: 93e1bd2461c816b4ab0eae19f2cd0e9d, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
+  - Name: Water
+    activation: 0
+    Clip: {fileID: 8300000, guid: d7084a9cc209ff046ad1f4d2c0098bc2, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    MinRange: 0
+    MaxRange: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
 --- !u!1 &1316948611
 GameObject:
   m_ObjectHideFlags: 0

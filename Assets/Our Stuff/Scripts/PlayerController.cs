@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxWater;
     [SerializeField] float water;
     [SerializeField] float waterDepletionRate;
+    private          float waterSoundCooldown;
 
     public HealthBar healthBar;
     public HealthBar fuelBar;
@@ -156,6 +157,7 @@ public class PlayerController : MonoBehaviour
 
     void Switched()
     {
+        audioManager.PlaySound(Sound.Activation.Custom, "Mode Change");
         WaterCannon.SetActive(false); SuckCannon.SetActive(false); PurpleCannon.SetActive(false);
         switch (SelectedWeapon)
         {
@@ -195,8 +197,8 @@ public class PlayerController : MonoBehaviour
             raycolor = Color.red;
         }
 
-        Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x,  _collider.bounds.extents.y),  Vector2.down *  (_collider.bounds.extents.y * 2), raycolor);
-        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x,  -_collider.bounds.extents.y), Vector2.down *  (_collider.bounds.extents.y * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center + new Vector3(_collider.bounds.extents.x,  _collider.bounds.extents.y),  Vector2.down  * (_collider.bounds.extents.y * 2), raycolor);
+        Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x,  -_collider.bounds.extents.y), Vector2.down  * (_collider.bounds.extents.y * 2), raycolor);
         Debug.DrawRay(_collider.bounds.center - new Vector3(_collider.bounds.extents.x,  _collider.bounds.extents.y),  Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
         Debug.DrawRay(_collider.bounds.center + new Vector3(-_collider.bounds.extents.x, _collider.bounds.extents.y),  Vector2.right * (_collider.bounds.extents.x * 2), raycolor);
 
@@ -235,6 +237,12 @@ public class PlayerController : MonoBehaviour
             {
                 WaterParticle.Play();
             }
+            if (waterSoundCooldown <= 0)
+            {
+                audioManager.PlaySound(Sound.Activation.Custom, "Water");
+                waterSoundCooldown = 1;
+            }
+            waterSoundCooldown -= Time.deltaTime;
             water -= waterDepletionRate * Time.deltaTime;
             waterBar.SetHealth(water);
         }
